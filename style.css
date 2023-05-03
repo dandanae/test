@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'SUIT'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root{
+    --light-yw: #FFEAD2;
+    --light-pp: #DBDFEA;
+    --basic-pp: #ACB1D6;
+    --dark-pp: #8294C4;
+    --text-color: #333;
+    --font-lt: 0.8em;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: var(--basic-pp); border-radius: 20px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+.container {
+    margin: auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+}
+
+.item { border: 1px red solid; padding: 10px;}
+
+.text-wrapper {
+    padding: 10px;
+}
+
+.insert-textarea, .result-textarea {
+    height: 400px;
+    width: 100%;
+    background-color: var(--light-yw);
+    resize: none;
+    padding: 10px;
+    border: solid 1px var(--basic-pp);
+    border-radius: 10px;
+    color: var(--text-color);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    outline-style: none;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--basic-pp);
+    color: var(--text-color);
+    padding: 5px 10px;
+    border-radius: 99px; 
+    float: right;
+    font-size: var(--font-lt);
+}
+
+.oneline-result-box {
+    grid-column-end: span 2;
+}
