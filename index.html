@@ -8,16 +8,17 @@
 	</head>
     <body>
         <div class="container">
-            <div class="grid-container">
-                <div class="item text-wrapper">
+            <div class="flex-container">
+                <div class="text-wrapper">
                     <textarea class="insert-textarea"></textarea>
-                    <button class="button" onclick="splitText()">우잉?</button>
+                    <div class="button-wrapper"><div class="button" onclick="splitText()">우잉?</div></div>
+                    
                 </div>
-                <div class="item text-wrapper">
-                    <textarea class="result-textarea" readonly></textarea>
+                <div class="text-wrapper">
+                    <div class="result-textarea"></div>
+                    <div class="button-wrapper"><div class="button" onclick="test()">우잉?</div></div>
                 </div>
-                <div class="item oneline-result-box"></div>
-            </div>   
+            </div>
         </div>
     </body>
 </html>

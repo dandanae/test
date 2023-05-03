@@ -4,6 +4,8 @@
     font-style: normal;
 }
 
+* { font-family: 'SUIT' }
+
 :root{
     --light-yw: #FFEAD2;
     --light-pp: #DBDFEA;
@@ -18,24 +20,30 @@
 ::-webkit-scrollbar-track { background: transparent; }
 
 .container {
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, auto);
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
-
-.item { border: 1px red solid; padding: 10px;}
 
 .text-wrapper {
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .insert-textarea, .result-textarea {
     height: 400px;
-    width: 100%;
+    width: 600px;
     background-color: var(--light-yw);
     resize: none;
     padding: 10px;
@@ -47,16 +55,20 @@
     outline-style: none;
 }
 
+.button-wrapper {
+    margin-top: 10px;
+}
+
 .button {
     display: inline-block;
     background-color: var(--basic-pp);
     color: var(--text-color);
-    padding: 5px 10px;
+    padding: 5px 20px;
     border-radius: 99px; 
-    float: right;
     font-size: var(--font-lt);
+    float: right;
 }
 
-.oneline-result-box {
-    grid-column-end: span 2;
+.green_text, .red_text{
+    color: red;
 }
