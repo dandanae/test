@@ -53,6 +53,7 @@
     overflow-x: hidden;
     overflow-y: scroll;
     outline-style: none;
+    font-size: 1em;
 }
 
 .button-wrapper {
@@ -65,10 +66,9 @@
     color: var(--text-color);
     padding: 5px 20px;
     border-radius: 99px; 
-    font-size: var(--font-lt);
     float: right;
 }
 
-.green_text, .red_text{
-    color: red;
+.green_text, .red_text, .blue_text, .violet_text{
+    color: var(--dark-pp) !important;
 }
