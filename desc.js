@@ -11,12 +11,12 @@ function splitText(){
     fixedText = fixedText.replace(/(\r\n|\n|\r)/gm, "");
     
     //문장부호 뒤에 공백 없을 시 추가
-    fixedText = fixedText.replace(/([.?!~])(?=(?:[^"]|"[^"]*")*[^"]*$)(?=(?:[^']|'[^']*')*[^']*$)(\s*)(\S)/g, '$1$3');
+    fixedText = fixedText.replace(/([.?!~"])(?=(?:[^"]|"[^"]*")*[^"]*$)(?=(?:[^']|'[^']*')*[^']*$)(\s*)(\S)/g, '$1$3');
     //450자로 잘라 배열에 저장
     const chunksResult = chunkString(fixedText);
 
     //마침표, 물음표, 느낌표, 물결표, 닫는 소괄호를 기준으로 split
-    const regex =/(?<=\?<\/b><\/em>|\.<\/b><\/em>|\!<\/b><\/em>|\~<\/b><\/em>|\)<\/b><\/em>|\?\s|\!\s|\.\s|\~\s|\)\s|\.\")/g;
+    const regex =/(?<=\?<\/b><\/em>|\.<\/b><\/em>|\!<\/b><\/em>|\~<\/b><\/em>|\)<\/b><\/em>|\?\s|\!\s|\.\s|\~\s|\)\s|\"\s)/g;
 
     //맞춤법 검사기(네이버) 돌리기
     checkSpelling(chunksResult).then((splitStr) => {
