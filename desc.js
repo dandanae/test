@@ -1,35 +1,40 @@
-function splitText(){
+function convertText(){
   const kpcName = document.querySelector('#KPCname').value;
   const pcName = document.querySelector("#PCname").value;
   console.log(pcName);
   const insertString = document.querySelector('.insert-textarea').value;
 
   
-  let fixedText = insertString.replace(/\.{2,}|…+/g, "…….");
-  fixedText = fixedText.replace(/c\s+/gi, "C").replace(/l\s+/gi, "L");
-  fixedText = fixedText.replace(/([“”])/g, '"');
-  fixedText = fixedText.replace(/([‘’])/g, '\'');
-  fixedText = fixedText.replace(/(\r\n|\n|\r)/gm, "");
-  fixedText = fixedText.replace(/([.?!~)])(?=\S)/g, '$1 ');
-
-  const chunksResult = chunkString(fixedText);
-
-  const regex =/(?<=\?<\/b><\/em>|\.<\/b><\/em>|\!<\/b><\/em>|\~<\/b><\/em>|\)<\/b><\/em>|\?\s|\!\s|\.\s|\~\s|\)\s)/g;
+  let sanitizedResult = sanitizeString(insertString);
+  const chunksResult = chunkString(sanitizedResult);
+  
+  
+  const regex =/(?<=\?<\/b><\/em>|\.<\/b><\/em>|\!<\/b><\/em>|\~<\/b><\/em>|\)<\/b><\/em>|\?\s|\!\s|\.\s|\~\s|\)\s|\”\s|\)\s)/g;
 
   checkSpelling(chunksResult).then((splitStr) => {
     if(kpcName != "") { splitStr = replaceParticle(splitStr, kpcName,'kpc'); }
     if(pcName != "") {splitStr = replaceParticle(splitStr, kpcName,/((?<!K)pc|pl|탐사자)/gi.source); }
-    console.log(splitStr);
 
-    splitStr = splitStr.split(regex);
+    splitStr = splitStr.split(regex).map(line=>line.trim());
+    splitStr = joinUntilQuoteEnds(splitStr);
+    //splitStr = splitStr.replace(/([“”])/g, '"').replace(/([‘’])/g, '\'');
     splitStr = splitStr.map(line => `/desc ${line.trim()}`);
-    splitStr = modifyArray(splitStr);
-
+    
     const resultarea = document.querySelector('.result-textarea');
     resultarea.innerHTML = splitStr.join('<br>');
   }).catch(error => {
     console.error(error);
   });
+}
+
+function sanitizeString(originalString){
+  let sanitizedString = originalString.replace(/\.{2,}|…+/g, "…….")
+                                  .replace(/c\s+/gi, "C").replace(/l\s+/gi, "L")
+                                  .replace(/(\r\n|\n|\r)/gm, "")
+                                  .replace(/([.?!~”])(?!\s|\)|”)/g, '$1 ');
+                                  //.replace(/([“”])/g, '"')
+                                  //.replace(/([‘’])/g, '\'')
+  return sanitizedString;
 }
 
 function chunkString(originalString) {
@@ -117,4 +122,31 @@ function replaceParticle(splitStr, name, particleName) {
   .replace(new RegExp(`${particleName}를`, "gi"), name + eul_reul)
   .replace(new RegExp(`${particleName}와`, "gi"), name + wa_gwa)
   .replace(new RegExp(particleName, "gi"), name);
+}
+
+function joinUntilQuoteEnds(arr) {
+  const result = [];
+  let current = '';
+
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+
+    if (element.startsWith('[') || element.startsWith('(') || element.startsWith('“')) {
+      current = element;
+    } else if (current) {
+      current += ' ' + element;
+
+      if ((element.endsWith(']') || element.endsWith(')') || element.endsWith('”')) && !element.endsWith('[ ]') && !element.endsWith('( )') && !element.endsWith('“')) {
+        result.push(current);
+        current = '';
+      }
+    } else {
+      result.push(element);
+    }
+  }
+
+  if (current) {
+    result.push(current);
+  }
+  return result;
 }
