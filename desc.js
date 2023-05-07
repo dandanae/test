@@ -1,19 +1,26 @@
 function splitText(){
+  const kpcName = document.querySelector('#KPCname').value;
+  const pcName = document.querySelector("#PCname").value;
+  console.log(pcName);
   const insertString = document.querySelector('.insert-textarea').value;
-  let fixedText = insertString.replace(/\.{2,}|…+/g, "…….");
 
+  
+  let fixedText = insertString.replace(/\.{2,}|…+/g, "…….");
+  fixedText = fixedText.replace(/c\s+/gi, "C").replace(/l\s+/gi, "L");
   fixedText = fixedText.replace(/([“”])/g, '"');
   fixedText = fixedText.replace(/([‘’])/g, '\'');
   fixedText = fixedText.replace(/(\r\n|\n|\r)/gm, "");
-  fixedText = fixedText.replace(/([.?!~])(?=\S)/g, '$1 ');
+  fixedText = fixedText.replace(/([.?!~)])(?=\S)/g, '$1 ');
 
   const chunksResult = chunkString(fixedText);
 
-
   const regex =/(?<=\?<\/b><\/em>|\.<\/b><\/em>|\!<\/b><\/em>|\~<\/b><\/em>|\)<\/b><\/em>|\?\s|\!\s|\.\s|\~\s|\)\s)/g;
 
-
   checkSpelling(chunksResult).then((splitStr) => {
+    if(kpcName != "") { splitStr = replaceParticle(splitStr, kpcName,'kpc'); }
+    if(pcName != "") {splitStr = replaceParticle(splitStr, kpcName,/((?<!K)pc|pl|탐사자)/gi.source); }
+    console.log(splitStr);
+
     splitStr = splitStr.split(regex);
     splitStr = splitStr.map(line => `/desc ${line.trim()}`);
     splitStr = modifyArray(splitStr);
@@ -93,4 +100,21 @@ function copyText(){
   let resultTextarea = document.querySelector('.result-textarea');
   let text = resultTextarea.innerHTML.replace(/<em><b class=\"(green|red|blue|violet)_text\">|<\/b><\/em>/g, '').replace(/<br>/g, '\n');
   navigator.clipboard.writeText(text);
+}
+
+function replaceParticle(splitStr, name, particleName) {
+  const lastChar = name[name.length - 1];
+  const isVowel = /[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z]/.test(lastChar);
+
+  const eun_neun = isVowel ? "은" : "는";
+  const i_ga = isVowel ? "이" : "가";
+  const eul_reul = isVowel ? "을" : "를";
+  const wa_gwa = isVowel ? "과" : "와";
+
+  return splitStr
+  .replace(new RegExp(`${particleName}는`, "gi"), name + eun_neun)
+  .replace(new RegExp(`${particleName}가`, "gi"), name + i_ga)
+  .replace(new RegExp(`${particleName}를`, "gi"), name + eul_reul)
+  .replace(new RegExp(`${particleName}와`, "gi"), name + wa_gwa)
+  .replace(new RegExp(particleName, "gi"), name);
 }

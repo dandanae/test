@@ -1,10 +1,4 @@
-@font-face {
-    font-family: 'SUIT'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-* { font-family: 'SUIT' }
+* { font-family: 'SUIT'; font-weight: 400; }
 
 :root{
     --light-yw: #FFEAD2;
@@ -67,8 +61,50 @@
     padding: 5px 20px;
     border-radius: 99px; 
     float: right;
-}
+}   
 
 .green_text, .red_text, .blue_text, .violet_text{
     color: var(--dark-pp) !important;
+}
+
+.name-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.name-box {
+    position: relative;
+    margin: 20px 10px;
+}
+
+.name-box>input {
+    border: none;
+    outline: none;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--dark-pp);
+    background-color: transparent;
+}
+
+.name-box>label {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--dark-pp);
+    pointer-events: none;
+    transition: .5s;
+    font-weight: 600;
+}
+
+.name-box input:focus ~ label,
+.name-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  font-size: 12px;
 }
