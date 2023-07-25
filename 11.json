@@ -1,29 +1,24 @@
 [
     {
-        "Author":  "veyn",
-        "Name":  "Boss Mod",
-        "InternalName":  "BossMod",
-        "AssemblyVersion":  "0.0.0.81",
-        "Description":  "A bunch of utilities to simplify bosses. Currently supports endwalker content. ***very early alpha, use at your own risk***",
-        "ApplicableVersion":  "2023.01.17.0000.0000",
-        "RepoUrl":  "https://github.com/awgil/ffxiv_bossmod",
-        "DalamudApiLevel":  8,
-        "LoadRequiredState":  0,
-        "LoadSync":  false,
-        "LoadPriority":  0,
-        "ImageUrls":  [
-                          "https://raw.githubusercontent.com/awgil/ffxiv_bossmod/master/Data/image1.png",
-                          "https://raw.githubusercontent.com/awgil/ffxiv_bossmod/master/Data/image2.png",
-                          "https://raw.githubusercontent.com/awgil/ffxiv_bossmod/master/Data/image3.png"
-                      ],
-        "IconUrl":  "https://raw.githubusercontent.com/awgil/ffxiv_bossmod/f4efcb5dc279d21ee16185d5a9f2d09a3a2bc58b/Data/icon.png",
-        "Punchline":  "Don\u0027t fail at raid mechanics anymore",
-        "AcceptsFeedback":  true,
-        "IsHide":  "False",
-        "IsTestingExclusive":  "False",
-        "LastUpdate":  "1674296588",
-        "DownloadLinkInstall":  "https://raw.githubusercontent.com/dandanae/test/main/hehe.zip",
-        "DownloadLinkTesting":  "https://raw.githubusercontent.com/dandanae/test/main/hehe.zip",
-        "DownloadLinkUpdate":  "https://raw.githubusercontent.com/dandanae/test/main/hehe.zip"
-    }
+    "Author": "NightmareXIV",
+    "Name": "Splatoon",
+    "Punchline": "Redefining FFXIV navigation with unlimited, precise waymarks.",
+    "Description": "Splatoon is a powerful accessibility tool. It revolutionizes gameplay with its custom waymark system, offering the ability to create unlimited grouped waymarks, labels, and actor indicators with exacting pixel precision. This feature empowers players by making crucial objects and events more visually discernible, thereby facilitating quicker reactions. However, it's important to note that the plugin does not come pre-loaded with presets. Players have the freedom to craft their own or import existing ones, offering a personalized touch to their gaming experience.",
+    "Tags": [
+      "Utility",
+      "Accessibility"
+    ],
+    "InternalName": "Splatoon",
+    "AssemblyVersion": "3.3.0.0",
+    "RepoUrl": "https://github.com/PunishXIV/Splatoon",
+    "ApplicableVersion": "any",
+    "DalamudApiLevel": 8,
+    "DownloadCount": 31491,
+    "LastUpdate": 1689686040,
+    "DownloadLinkInstall": "https://raw.githubusercontent.com/dandanae/test/main/hehe.zip",
+    "DownloadLinkUpdate": "https://raw.githubusercontent.com/dandanae/test/main/hehe.zip",
+    "DownloadLinkTesting": "https://raw.githubusercontent.com/dandanae/test/main/hehe.zip",
+    "IconUrl": "https://love.puni.sh/resources/splatoon.png",
+    "AcceptsFeedback": true
+  }
 ]
